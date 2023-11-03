@@ -1,12 +1,13 @@
 {
-  "name": "CRUD-JS",
+  "name": "crudjs",
   "version": "0.0.1",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
-    "lint": "standard .",
-    "fix": "standard . --fix"
+    "dev": "nodemon .",
+    "lint": "eslint .",
+    "fix": "eslint . --fix"
   },
   "keywords": [],
   "author": "",
@@ -14,9 +15,21 @@
   "dependencies": {
     "better-sqlite3": "~9.0.0",
     "common-tags": "^1.8.2",
-    "express": "~4.18.2"
+    "dotenv": "^16.3.1",
+    "express": "~4.18.2",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "standard": "^17.1.0"
+    "eslint": "^8.52.0",
+    "eslint-config-standard": "^17.1.0",
+    "nodemon": "^3.0.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "standard"
+    ],
+    "ignorePatterns": [
+      "node_modules/"
+    ]
   }
 }

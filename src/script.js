@@ -7,7 +7,7 @@ console.debug('products', db.prepare('SELECT * FROM products').all())
 
 for (const product of data.products) {
   const query = db.prepare('INSERT INTO products VALUES (@id, @title, @description, @price, @discountPercentage, @rating, @stock, @brand)')
-  let result = query.run({
+  const result = query.run({
     id: null,
     title: product.title,
     description: product.description,
@@ -17,5 +17,5 @@ for (const product of data.products) {
     stock: product.stock,
     brand: product.brand
   })
-  console.debug(`Query ejecutada correctamente sobre: ` + result.changes)
+  console.debug('Query ejecutada correctamente sobre: ' + result.changes)
 }

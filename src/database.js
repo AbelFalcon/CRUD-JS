@@ -1,7 +1,7 @@
 import Database from 'better-sqlite3'
 import { stripIndents } from 'common-tags'
 
-const db = new Database('products.db', { fileMustExist: true })
+const db = new Database('src/products.db')
 
 // ? Crear tablas si NO existen
 db.prepare(stripIndents`
