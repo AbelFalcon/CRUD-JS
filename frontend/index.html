@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>CRUD-JS</title>
+  </head>
+  <body class="flex flex-col flex-grow bg-zinc-100">
+    <header class="bg-zinc-900 text-white p-4">
+      <div class="container flex flex-row">
+        <svg
+          class="h-8 w-8 mr-3"
+          xmlns="http://www.w3.org/2000/svg"
+          S
+          viewBox="0 0 256 256"
+        >
+          <g fill="none">
+            <rect width="256" height="256" fill="#F0DB4F" rx="60" />
+            <path
+              fill="#0c0a09"
+              d="m67.312 213.932l19.59-11.856c3.78 6.701 7.218 12.371 15.465 12.371c7.905 0 12.889-3.092 12.889-15.12v-81.798h24.058v82.138c0 24.917-14.606 36.259-35.916 36.259c-19.245 0-30.416-9.967-36.087-21.996m85.07-2.576l19.588-11.341c5.157 8.421 11.859 14.607 23.715 14.607c9.969 0 16.325-4.984 16.325-11.858c0-8.248-6.53-11.17-17.528-15.98l-6.013-2.579c-17.357-7.388-28.871-16.668-28.871-36.258c0-18.044 13.748-31.792 35.229-31.792c15.294 0 26.292 5.328 34.196 19.247l-18.731 12.029c-4.125-7.389-8.591-10.31-15.465-10.31c-7.046 0-11.514 4.468-11.514 10.31c0 7.217 4.468 10.139 14.778 14.608l6.014 2.577c20.449 8.765 31.963 17.699 31.963 37.804c0 21.654-17.012 33.51-39.867 33.51c-22.339 0-36.774-10.654-43.819-24.574"
+            />
+          </g>
+        </svg>
+        <span class="font-bold text-2xl">CRUD-JS</span>
+      </div>
+
+    </header>
+
+    <main class="flex justify-center items-center mt-4">
+      <div class="flex flex-row justify-center space-x-4">
+        <button
+          class="relative px-7 py-4 border-2 hover:bg-zinc-950 hover:text-white border-black rounded-lg leading-none flex items-center" id="view-all"
+        >
+          </span>
+          <span>Ver todos los productos</span>
+        </button>
+        <button
+          id="view-product"
+          class="hover:bg-zinc-950 hover:text-white border-2 border-black text-black py-2 px-4 rounded-lg leading-none"
+        >
+          Ver producto
+        </button>
+        <button
+          id="view-category"
+          class="hover:bg-zinc-950 hover:text-white border-2 border-black text-black py-2 px-4 rounded-lg leading-none"
+        >
+          Ver categorias
+        </button>
+      </div>
+    </main>
+
+    <div class="flex flex-row m-4 items-center">
+      <div class="p-4 md:w-1/3 lg:w-1/5">
+        <div
+          class="bg-zinc-950 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden"
+        >
+          <div class="relative">
+            <img class="w-full" src="" alt="" />
+          </div>
+
+          <div class="p-6">
+            <h2 class="text-lg text-white font-bold title-font mb-2" id="title">Titulo</h2>
+            <hr class="h-px my-7 bg-zinc-500 border-0">
+            <p class="leading-relaxed text-base text-white" id="description">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod
+              corporis
+            </p>
+
+            <div class="mt-4">
+              <span
+                class="title-font font-bold text-white text-2xl text-white-900" id="price"
+                >100$</span
+              >
+              <span class="text-sm line-through text-white" id="discount">120$</span>
+            </div>
+
+            <div class="mt-4">
+              <span class="text-white font-bold">Stock: </span>
+              <span class="text-green-500 font-bold" id="stock">Disponible</span>
+            </div>
+
+            <div class="mt-4">
+              <button
+                id="delete-product"
+                class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12l1.41 1.41L13.41 14l2.12 2.12l-1.41 1.41L12 15.41l-2.12 2.12l-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"
+                  />
+                </svg>
+              </button>
+                <button
+                id="edit-product"
+                class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill="currentColor"
+                    d="m19.3 8.925l-4.25-4.2l1.4-1.4q.575-.575 1.413-.575t1.412.575l1.4 1.4q.575.575.6 1.388t-.55 1.387L19.3 8.925ZM17.85 10.4L7.25 21H3v-4.25l10.6-10.6l4.25 4.25Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
