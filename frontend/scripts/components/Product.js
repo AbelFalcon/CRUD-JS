@@ -4,12 +4,12 @@ const Product = ({ title, description, price, discountPercentage, stock }) => ht
     <div
       class="product bg-zinc-950 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden"
     >
-      <div class="p-6">
+      <div class="p-6 ">
         <h2 class="text-lg text-white font-bold title-font mb-2" id="title">
           ${title}
         </h2>
         <hr class="h-px my-7 bg-zinc-500 border-0" />
-        <p class="leading-relaxed text-base text-white" id="description">
+        <p class="leading-relaxed text-base text-white flex-grow overflow-auto mb-4" style="max-height: 2rem;" id="description">
           ${description}
         </p>
 
