@@ -27,7 +27,7 @@ async function getProducts () {
 }
 
 async function main () {
-  const status = checkStatus()
+  const status = await checkStatus()
   if (status === false) {
     document.getElementById('status').textContent = 'Desconectado'
     document.getElementById('status').style.color = 'orange'
