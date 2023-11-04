@@ -2,14 +2,20 @@ import 'dotenv/config'
 import express from 'express'
 import productsRoute from './routes/products.js'
 import cors from 'cors'
+import z from 'zod'
 
 const app = express()
 
-const port = process.env.portBackEnd
-const portFront = process.env.portFrontEnd
+const env = z.object({
+  PORT_BACKEND: z.string().min(1),
+  PORT_FRONTEND: z.string().min(1)
+}).parse(process.env)
+
+const port = env.PORT_BACKEND
+const portFront = env.PORT_FRONTEND
 
 app.use((req, res, next) => {
-  res.append('Access-Control-Allow-Origin', ['*'])
+  res.append('Access-Control-Allow-Origin', ['*', 'http://localhost:3000'])
   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
   res.append('Access-Control-Allow-Headers', 'Content-Type')
   next()
@@ -17,6 +23,10 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
+})
+
+app.get('/status', (req, res) => {
+  res.send('Online ;)')
 })
 
 app.use(cors({
