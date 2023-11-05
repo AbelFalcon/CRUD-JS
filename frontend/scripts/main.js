@@ -11,6 +11,44 @@ async function checkStatus () {
   }
 }
 
+// Add producto
+
+function modalDelete (productId, productElement) {
+  const modal = document.getElementById('popup-modal')
+  modal.classList.remove('hidden')
+
+  // Si haces clic en el botón Si, entonces borras el producto y agregas hidden a la clase del popup
+  document.getElementById('popup-modal-yes').addEventListener('click', function (event) {
+    deleteProduct(productId, productElement)
+    document.getElementById('popup-modal').classList.add('hidden')
+  })
+
+  // Si haces clic en el botón No, entonces agregas hidden a clase del popup
+  document.getElementById('popup-modal-no').addEventListener('click', function (event) {
+    document.getElementById('popup-modal').classList.add('hidden')
+  })
+
+  // Si haces clic en la X, entonces agregas hidden a clase del popup
+  document.getElementById('popup-modal-x').addEventListener('click', function (event) {
+    document.getElementById('popup-modal').classList.add('hidden')
+  })
+}
+
+async function deleteProduct (id, productElement) {
+  try {
+    const response = await fetch(apiURL + 'products/' + id, {
+      method: 'DELETE'
+    })
+    if (response.ok) {
+      productElement.remove()
+    } else {
+      console.log('Error al eliminar el producto')
+    }
+  } catch (error) {
+    return false
+  }
+}
+
 async function getProducts () {
   let productsList = document.getElementById('products')
   try {
@@ -21,6 +59,20 @@ async function getProducts () {
       productsList = document.getElementById('products')
       productsList.innerHTML = productsList.innerHTML + `${Product(product)}`
     }
+
+    document.querySelectorAll('#delete-product').forEach((button) => {
+      button.addEventListener('click', function (event) {
+        event.preventDefault()
+
+        const productElement = this.parentElement.parentElement
+        const productId = this.dataset.id
+
+        modalDelete(productId, productElement)
+      })
+    })
+    document.getElementById('add').addEventListener('click', function (event) {
+      document.getElementById('create-modal').classList.remove('hidden')
+    })
   } catch {
     productsList.innerHTML = '<span>Error</span>'
   }

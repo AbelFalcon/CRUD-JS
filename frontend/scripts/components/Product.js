@@ -1,6 +1,6 @@
 import { html } from '../modules/element.js'
 
-const Product = ({ title, description, price, discountPercentage, stock }) => html`
+const Product = ({ id, title, description, price, discountPercentage, stock }) => html`
     <div
       class="product bg-zinc-950 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden"
     >
@@ -34,7 +34,8 @@ const Product = ({ title, description, price, discountPercentage, stock }) => ht
         <div class="mt-4">
           <button
             id="delete-product"
-            class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
+            data-id="${id}"
+            class="delete-product bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
