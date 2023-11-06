@@ -9,11 +9,11 @@
     <script src="scripts/main.js" type="module" defer></script>
   </head>
 
-  <body class="flex flex-col bg-zinc-300">
+  <body class="flex flex-col bg-slate-900">
 
     <!-- Header -->
 
-    <header class="bg-zinc-950 text-white p-4">
+    <header class="bg-slate-950 text-white p-4">
       <div class="container flex flex-row justify-between items-center">
         <div class="flex flex-row items-center">
           <svg class="h-8 w-8 mr-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
@@ -37,7 +37,7 @@
 
     <main class="p-[5em] w-full">
 
-      <div class=" p-2rem mb-1 ">
+      <div class="p-2rem mb-1 ">
         <form>
           <div class="relative">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -48,10 +48,10 @@
               </svg>
             </div>
             <input type="search" id="search"
-              class="block w-full p-4 pl-10 text-sm text-white border border-gray-300 rounded-lg bg-zinc-900 focus:ring-blue-500 focus:border-blue-500 hover:border-blue-500"
+              class="block w-full p-4 pl-10 text-sm text-slate-500 border-2 border-slate-700 rounded-lg bg-slate-800 hover:border-slate-500"
               placeholder="Nombre del producto, marca, categoria ..." required>
             <button type="submit"
-              class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Buscar</button>
+              class="text-slate-200 absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Buscar</button>
           </div>
         </form>
       </div>
@@ -59,7 +59,8 @@
       <!-- Añadir productos -->
 
       <section>
-        <button id="add" class="bg-zinc-950 hover:bg-zinc-800 text-white font-bold py-2 px-4 rounded m-4">Añadir producto
+        <button id="add" class="bg-zinc-950 hover:bg-zinc-800 text-white font-bold py-2 px-4 rounded m-4">Añadir
+          producto
         </button>
       </section>
 
@@ -114,49 +115,23 @@
 
 
       <div id="a" class="m-4 items-center w-full">
-        <div class="grid grid-cols-4 w-full gap-4 pr-9 justify-center" id="products">
+        <div class="grid grid-cols-[repeat(auto-fill,_minmax(200px,_1fr))] w-full gap-4 pr-9 justify-center" id="products">
         </div>
       </div>
 
 
 
       <!-- Modal Are u sure u want to delete this products -->
-      <div id="popup-modal" tabindex="-1"
-        class="hidden fixed top-0 left-0 right-0 z-50 p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative w-full max-w-md max-h-full">
-          <div class="relative bg-zinc-950 rounded-lg shadow">
-            <button id="popup-modal-x" type="button"
-              class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-              data-modal-hide="popup-modal">
-              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                viewBox="0 0 14 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-              </svg>
-              <span class="sr-only">Cerrar</span>
-            </button>
-            <div class="p-6 text-center">
-              <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-              </svg>
-              <h3 class="mb-5 text-lg font-normal text-white">¿Seguro que desea eliminar este producto?</h3>
-              <button id="popup-modal-yes" data-modal-hide="popup-modal" type="button"
-                class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                Si, estoy seguro
-              </button>
-              <button id="popup-modal-no" data-modal-hide="popup-modal" type="button"
-                class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No,
-                cancelar</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      </div>
+      <dialog id="popup-modal" class="p-4 bg-slate-800 border-1 border-slate-700 rounded-lg shadow-md backdrop:backdrop-blur-md">
+        <section class="modal-text text-slate-50">
+          <h3>¿Seguro que desea eliminar este producto?</h3>
+        </section>
+        <section class="modal-buttons flex flex-row gap-2 mt-[4em] justify-between">
+          <button id="popup-modal-yes" class="py-1 px-2 bg-blue-600 text-slate-100 rounded-md" type="submit">Confirmar</button>
+          <button id="popup-modal-no" class="py-1 px-2 bg-neutral-400 text-slate-100 rounded-md" autofocus>Cerrar</button>
+        </section>
+      </dialog>
 
     </main>
-
   </body>
-
 </html>

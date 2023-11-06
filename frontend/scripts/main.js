@@ -1,6 +1,6 @@
 import Product from './components/Product.js'
 
-const apiURL = 'http://localhost:4001/'
+const apiURL = 'http://127.0.0.1:4001/'
 
 async function checkStatus () {
   try {
@@ -13,25 +13,26 @@ async function checkStatus () {
 
 // Add producto
 
-function modalDelete (productId, productElement) {
+function showDeleteModal (productId, productElement) {
+  /**
+   * @type {HTMLDialogElement}
+   */
   const modal = document.getElementById('popup-modal')
-  modal.classList.remove('hidden')
+  modal.showModal()
 
   // Si haces clic en el botón Si, entonces borras el producto y agregas hidden a la clase del popup
-  document.getElementById('popup-modal-yes').addEventListener('click', function (event) {
+  document.getElementById('popup-modal-yes').addEventListener('click', () => {
     deleteProduct(productId, productElement)
-    document.getElementById('popup-modal').classList.add('hidden')
+    modal.close()
   })
 
   // Si haces clic en el botón No, entonces agregas hidden a clase del popup
-  document.getElementById('popup-modal-no').addEventListener('click', function (event) {
-    document.getElementById('popup-modal').classList.add('hidden')
+  document.getElementById('popup-modal-no').addEventListener('click', () => {
+    modal.close()
   })
 
   // Si haces clic en la X, entonces agregas hidden a clase del popup
-  document.getElementById('popup-modal-x').addEventListener('click', function (event) {
-    document.getElementById('popup-modal').classList.add('hidden')
-  })
+  // document.getElementById('popup-modal-x').addEventListener('click', toggle)
 }
 
 async function deleteProduct (id, productElement) {
@@ -67,14 +68,14 @@ async function getProducts () {
         const productElement = this.parentElement.parentElement
         const productId = this.dataset.id
 
-        modalDelete(productId, productElement)
+        showDeleteModal(productId, productElement)
       })
     })
     document.getElementById('add').addEventListener('click', function (event) {
       document.getElementById('create-modal').classList.remove('hidden')
     })
-  } catch {
-    productsList.innerHTML = '<span>Error</span>'
+  } catch (error) {
+    productsList.innerHTML = '<span>Error</span>' + error
   }
 }
 
