@@ -12,6 +12,18 @@ async function checkStatus () {
 }
 
 // Add producto
+function showCreateModal () {
+  const modal = document.getElementById('create-modal')
+  modal.showModal()
+
+  document.getElementById('create-modal-yes').addEventListener('click', () => {
+    modal.close()
+  })
+
+  document.getElementById('create-modal-no').addEventListener('click', () => {
+    modal.close()
+  })
+}
 
 function showDeleteModal (productId, productElement) {
   /**
@@ -33,6 +45,23 @@ function showDeleteModal (productId, productElement) {
 
   // Si haces clic en la X, entonces agregas hidden a clase del popup
   // document.getElementById('popup-modal-x').addEventListener('click', toggle)
+}
+
+async function createProduct (product) {
+  try {
+    const response = await fetch(apiURL + 'products', {
+      method: 'POST',
+      body: JSON.stringify(product),
+      headers: { 'Content-type': 'application/json; charset=UTF-8' }
+    })
+    if (response.ok) {
+      console.log('Producto agregado correctamente.')
+    } else {
+      console.log('Error')
+    }
+  } catch (error) {
+    return false
+  }
 }
 
 async function deleteProduct (id, productElement) {
@@ -62,7 +91,7 @@ async function getProducts () {
     }
 
     document.querySelectorAll('#delete-product').forEach((button) => {
-      button.addEventListener('click', function (event) {
+      button.addEventListener('click', (event) => {
         event.preventDefault()
 
         const productElement = this.parentElement.parentElement
@@ -71,8 +100,8 @@ async function getProducts () {
         showDeleteModal(productId, productElement)
       })
     })
-    document.getElementById('add').addEventListener('click', function (event) {
-      document.getElementById('create-modal').classList.remove('hidden')
+    document.getElementById('add').addEventListener('click', (event) => {
+      showCreateModal()
     })
   } catch (error) {
     productsList.innerHTML = '<span>Error</span>' + error
