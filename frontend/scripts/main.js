@@ -99,6 +99,20 @@ async function getProducts () {
 
         showDeleteModal(productId, productElement)
       })
+
+      // Make product listener
+
+      document.getElementById('create-modal-yes').addEventListener('submit', (event) => {
+        event.preventDefault()
+
+        const product = {
+          name: document.getElementById('name').value,
+          description: document.getElementById('description').value,
+          price: document.getElementById('price').value
+        }
+
+        createProduct(product)
+      })
     })
     document.getElementById('add').addEventListener('click', (event) => {
       showCreateModal()
