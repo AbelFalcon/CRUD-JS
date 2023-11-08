@@ -71,13 +71,25 @@
         </section>
         <form class="modal-buttons flex flex-row gap-2 mt-4 justify-between" action="#">
           <label for="name">Nombre del producto</label>
-          <input type="text" name="name" id="name">
+          <input type="text" name="name" id="title">
 
           <label for="desc">Descripcion</label>
           <input type="text" name="name" id="description">
 
+           <label for="name">Nombre del producto</label>
+          <input type="text" name="name" id="brand">
+
           <label for="price">Precio</label>
           <input type="number" name="price" id="price" min="1">
+
+          <label for="discountPrice">Descuento</label>
+          <input type="number" name="price" id="discountPrice" min="1">
+
+          <label for="rating">Rating</label>
+          <input type="number" name="price" id="rating" min="1" max="5">
+
+          <label for="stock">Stock</label>
+          <input type="number" name="price" id="stock" min="1">
 
           <button id="create-modal-no" class="py-1 px-2 bg-neutral-400 text-neutral-100 rounded-md" autofocus>Cerrar</button>
           <button id="create-modal-yes" class="py-1 px-2 bg-red-600 text-slate-100 rounded-md" type="submit">Crear</button>

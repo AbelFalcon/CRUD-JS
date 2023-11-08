@@ -52,15 +52,22 @@ async function createProduct (product) {
     const response = await fetch(apiURL + 'products', {
       method: 'POST',
       body: JSON.stringify(product),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' }
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8'
+      }
     })
+
     if (response.ok) {
+      const newProduct = await response.json()
       console.log('Producto agregado correctamente.')
+      return newProduct
     } else {
-      console.log('Error')
+      console.error('Error al agregar el producto')
+      return null
     }
   } catch (error) {
-    return false
+    console.error('Error inesperado al agregar el producto:', error)
+    return null
   }
 }
 
@@ -101,19 +108,28 @@ async function getProducts () {
       })
 
       // Make product listener
-
-      document.getElementById('create-modal-yes').addEventListener('submit', (event) => {
-        event.preventDefault()
-
-        const product = {
-          name: document.getElementById('name').value,
-          description: document.getElementById('description').value,
-          price: document.getElementById('price').value
-        }
-
-        createProduct(product)
-      })
     })
+
+    document.getElementById('create-modal-yes').addEventListener('click', (event) => {
+      event.preventDefault()
+
+      console.log('click')
+
+      const product = {
+        title: document.getElementById('title').value,
+        description: document.getElementById('description').value,
+        price: document.getElementById('price').value,
+        discountPrice: document.getElementById('discountPrice').value,
+        rating: document.getElementById('rating').value,
+        stock: document.getElementById('stock').value,
+        brand: document.getElementById('brand').value
+      }
+
+      createProduct(product)
+
+      console.log(product)
+    })
+
     document.getElementById('add').addEventListener('click', (event) => {
       showCreateModal()
     })
