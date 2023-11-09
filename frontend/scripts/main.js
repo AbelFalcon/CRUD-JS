@@ -101,8 +101,8 @@ async function getProducts () {
       button.addEventListener('click', (event) => {
         event.preventDefault()
 
-        const productElement = this.parentElement.parentElement
-        const productId = this.dataset.id
+        const productElement = button.parentElement.parentElement
+        const productId = button.dataset.id
 
         showDeleteModal(productId, productElement)
       })

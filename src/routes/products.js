@@ -12,7 +12,7 @@ router.use((req, res, next) => {
 // # GET
 // define the home page route
 router.get('/', (req, res) => {
-  const allProducts = db.prepare('SELECT * FROM products LIMIT 100').all()
+  const allProducts = db.prepare('SELECT * FROM products LIMIT 200').all()
   res.json(allProducts)
 })
 
