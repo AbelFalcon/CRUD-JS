@@ -71,6 +71,18 @@ async function createProduct (product) {
   }
 }
 
+function resetFIltres () {
+  const limpiarFiltrosBtn = document.getElementById('clearFiltres')
+
+  limpiarFiltrosBtn.addEventListener('click', () => {
+    const selectOptions = document.querySelectorAll('select')
+
+    selectOptions.forEach((select) => {
+      select.value = ''
+    })
+  })
+}
+
 async function deleteProduct (id, productElement) {
   try {
     const response = await fetch(apiURL + 'products/' + id, {
@@ -149,6 +161,7 @@ async function main () {
   document.getElementById('status').style.color = '#16a34a'
 
   getProducts()
+  resetFIltres()
 }
 
 main()
