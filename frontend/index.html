@@ -19,6 +19,7 @@
     /* Firefox */
     input[type=number] {
       -moz-appearance: textfield;
+      appearance: none;
     }
 
     #form-modal {
@@ -71,6 +72,11 @@
             </g>
           </svg>
           <a href="/"><span class="font-bold text-2xl">CRUD-JS</span></a>
+                  <section>
+          <button id="add" class="bg-green-700 hover:bg-green-800 text-white  py-2 px-4 rounded m-4">Añadir
+            producto
+          </button>
+        </section>
         </div>
 
         <!-- Aqui se comprueba si la base de datos esta encendida o apagaa -->
@@ -104,9 +110,9 @@
       </div>
 
 
-<div class="w-full shadow p-5 rounded-lg items-center justify-center">
+<div class="w-full shadow p-5 rounded-lg items-center justify-center bg-slate-800 mt-4 border-2 border-slate-700 hover:border-slate-500">
   <div class="relative">
-    <div class="flex items-center justify-between mt-4">
+    <div class="flex items-center justify-between">
       <p class="font-medium text-white">
         Filtros
       </p>
@@ -119,13 +125,13 @@
     <div>
       <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
         <select class="px-4 py-3 w-full rounded-md border-transparent text-white focus:border-gray-500 focus:ring-0 text-sm">
-          <option value="">Marca</option>
+          <option value="">Marca (Todas)</option>
           <option value="Apple">Apple</option>
           <option value="Samsung">Samsung</option>
         </select>
 
         <select class="text-white px-4 py-3 w-full rounded-md border-transparent focus:border-gray-500 focus:ring-0 text-sm">
-          <option value="">Rango de precios</option>
+          <option value="">Rango de precios (Todos)</option>
           <option value="0-10">$0 - $10</option>
           <option value="11-50">$11 - $50</option>
           <option value="51-100">$51 - $100</option>
@@ -141,16 +147,13 @@
 </div>
 
 
-
-
-
         <!-- Añadir productos -->
 
-        <section>
+        <!-- <section>
           <button id="add" class="bg-green-700 hover:bg-green-800 text-white  py-2 px-4 rounded m-4">Añadir
             producto
           </button>
-        </section>
+        </section> -->
 
         <!-- Modal Añadir productos -->
         <dialog id="create-modal"
