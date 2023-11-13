@@ -1,6 +1,6 @@
 import { html } from '../modules/element.js'
 
-const Product = ({ id, title, description, price, discountPercentage, stock }) => html`
+const Product = ({ id, title, description, price, discountPercentage, stock, brand }) => html`
     <div
       class="product bg-zinc-950 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300 overflow-hidden"
     >
@@ -23,6 +23,15 @@ const Product = ({ id, title, description, price, discountPercentage, stock }) =
             >${discountPercentage}</span
           >
         </div>
+
+        <div class="mt-4">
+        <span
+          class="title-font font-bold text-white text-2xl text-white-900"
+          id="brand"
+          >Marca: ${brand}</span
+        >
+      </div>
+
 
         <div class="mt-4">
           <span class="text-white font-bold">Stock: </span>

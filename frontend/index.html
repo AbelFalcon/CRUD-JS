@@ -24,7 +24,8 @@
 
     #form-modal {
 
-      & input, textarea {
+      & input,
+      textarea {
         border-radius: 5px;
         padding: 5px;
         border: none;
@@ -72,11 +73,11 @@
             </g>
           </svg>
           <a href="/"><span class="font-bold text-2xl">CRUD-JS</span></a>
-                  <section>
-          <button id="add" class="bg-green-700 hover:bg-green-800 text-white  py-2 px-4 rounded m-4">Añadir
-            producto
-          </button>
-        </section>
+          <section>
+            <button id="add" class="bg-green-700 hover:bg-green-800 text-white  py-2 px-4 rounded m-4">Añadir
+              producto
+            </button>
+          </section>
         </div>
 
         <!-- Aqui se comprueba si la base de datos esta encendida o apagaa -->
@@ -102,7 +103,7 @@
             </div>
             <input type="search" id="search"
               class="block w-full p-4 pl-10 text-sm text-slate-500 border-2 border-slate-700 rounded-lg bg-slate-800 hover:border-slate-500"
-              placeholder="Nombre del producto, marca, categoria ..." required>
+              placeholder="Nombre del producto, marca, categoría ..." required>
             <button type="submit"
               class="text-slate-200 absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">Buscar</button>
           </div>
@@ -110,121 +111,120 @@
       </div>
 
 
-<div class="w-full shadow p-5 rounded-lg items-center justify-center bg-slate-800 mt-4 border-2 border-slate-700 hover:border-slate-500">
-  <div class="relative">
-    <div class="flex items-center justify-between">
-      <p class="font-medium text-white">
-        Filtros
-      </p>
+      <div class="
+        flex flex-row gap-2
+        flex-wrap w-full mt-4">
+        <div class="flex flex-col gap-1">
+          <small class="text-slate-200">Marcas</small>
+          <select id="filter-brands"
+            class="px-4 py-2 rounded-md border-transparent text-white focus:border-gray-500 focus:ring-0 text-sm">
+            <option value="Apple">Apple</option>
+            <option value="Samsung">Samsung</option>
+          </select>
+        </div>
 
-      <button id="clearFiltres" class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 text-sm font-medium rounded-md">
-        Limpiar filtros
-      </button>
-    </div>
+        <div class="flex flex-col gap-1">
+          <small class="text-slate-200">Precio mínimo</small>
+          <input type="range" id="filter-price"
+            class="text-white px-4 py-2 rounded-md border-transparent focus:border-gray-500 focus:ring-0 text-sm">
+          </input>
+          <span id="price-result"></span>
+        </div>
 
-    <div>
-      <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-4">
-        <select class="px-4 py-3 w-full rounded-md border-transparent text-white focus:border-gray-500 focus:ring-0 text-sm">
-          <option value="">Marca (Todas)</option>
-          <option value="Apple">Apple</option>
-          <option value="Samsung">Samsung</option>
-        </select>
+        <div class="flex flex-col gap-1">
+          <small class="text-slate-200">Estado</small>
+          <select id="filter-status"
+            class="text-white px-4 py-2 rounded-md border-transparent focus:border-gray-500 focus:ring-0 text-sm">
+            <option value="">Disponible</option>
+            <option value="Fuera de Stock">Fuera de Stock</option>
+          </select>
+        </div>
 
-        <select class="text-white px-4 py-3 w-full rounded-md border-transparent focus:border-gray-500 focus:ring-0 text-sm">
-          <option value="">Rango de precios (Todos)</option>
-          <option value="0-10">$0 - $10</option>
-          <option value="11-50">$11 - $50</option>
-          <option value="51-100">$51 - $100</option>
-        </select>
-
-        <select class="text-white px-4 py-3 w-full rounded-md border-transparent focus:border-gray-500 focus:ring-0 text-sm">
-          <option value="">Disponible</option>
-          <option value="Fuera de Stock">Fuera de Stock</option>
-        </select>
+        <div class="flex flex-col gap-1 justify-end">
+          <button id="clearFiltres"
+            class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 text-sm font-medium rounded-md">
+            Limpiar filtros
+          </button>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
+      </div>
 
 
-        <!-- Añadir productos -->
+      <!-- Añadir productos -->
 
-        <!-- <section>
+      <!-- <section>
           <button id="add" class="bg-green-700 hover:bg-green-800 text-white  py-2 px-4 rounded m-4">Añadir
             producto
           </button>
         </section> -->
 
-        <!-- Modal Añadir productos -->
-        <dialog id="create-modal"
-          class="p-4 bg-slate-800 border-1 border-slate-700 rounded-lg shadow-xl backdrop:backdrop-blur-md w-1/3">
-          <form id="form-modal" class="modal-buttons flex flex-col gap-2 justify-between" action="#">
-            <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
-              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                Crear producto
-              </h3>
-              <button type="button" id="create-modal-no"
-                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                data-modal-hide="default-modal">
-                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                  viewBox="0 0 14 14">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                </svg>
-                <span class="sr-only">Close modal</span>
-              </button>
-            </div>
-
-            <label for="name">Nombre del producto</label>
-            <input type="text" name="name" id="title" placeholder="Iphone X">
-
-            <label for="desc">Descripcion</label>
-            <textarea class="resize" type="text" name="name" id="description" placeholder=""></textarea>
-
-            <label for="name">Marca</label>
-            <input type="text" name="name" id="brand" placeholder="Apple">
-
-            <label for="price">Precio</label>
-            <input type="number" name="price" id="price" min="1" placeholder="999€">
-
-            <label for="discountPrice">Descuento</label>
-            <input type="number" name="price" id="discountPrice" min="1" placeholder="12€">
-
-            <label for="rating">Rating</label>
-            <input type="number" name="price" id="rating" min="1" max="5" placeholder="5">
-
-            <label for="stock">Stock</label>
-            <input type="number" name="price" id="stock" min="1" placeholder="5">
-
-
-
-            <button id="create-modal-yes"
-              class="mt-4 py-1 px-2 bg-green-700 hover:bg-green-900 text-slate-100 rounded-md" type="submit">Crear
-              producto</button>
-            </section>
-        </dialog>
-
-        <div id="a" class="m-4 items-center w-full">
-          <div class="grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] w-full gap-4 pr-9 justify-center"
-            id="products">
+      <!-- Modal Añadir productos -->
+      <dialog id="create-modal"
+        class="p-4 bg-slate-800 border-1 border-slate-700 rounded-lg shadow-xl backdrop:backdrop-blur-md w-1/3">
+        <form id="form-modal" class="modal-buttons flex flex-col gap-2 justify-between" action="#">
+          <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+              Crear producto
+            </h3>
+            <button type="button" id="create-modal-no"
+              class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+              data-modal-hide="default-modal">
+              <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+              </svg>
+              <span class="sr-only">Close modal</span>
+            </button>
           </div>
+
+          <label for="name">Nombre del producto</label>
+          <input type="text" name="name" id="title" placeholder="Iphone X">
+
+          <label for="desc">Descripcion</label>
+          <textarea class="resize" type="text" name="name" id="description" placeholder=""></textarea>
+
+          <label for="name">Marca</label>
+          <input type="text" name="name" id="brand" placeholder="Apple">
+
+          <label for="price">Precio</label>
+          <input type="number" name="price" id="price" min="1" placeholder="999€">
+
+          <label for="discountPrice">Descuento</label>
+          <input type="number" name="price" id="discountPrice" min="1" placeholder="12€">
+
+          <label for="rating">Rating</label>
+          <input type="number" name="price" id="rating" min="1" max="5" placeholder="5">
+
+          <label for="stock">Stock</label>
+          <input type="number" name="price" id="stock" min="1" placeholder="5">
+          <button id="create-modal-yes" class="mt-4 py-1 px-2 bg-green-700 hover:bg-green-900 text-slate-100 rounded-md"
+            type="submit">Crear
+            producto</button>
+          </section>
+      </dialog>
+
+      <div id="a" class="my-4 items-center w-full">
+        <div class="grid grid-cols-[repeat(auto-fit,_minmax(300px,_1fr))] w-full gap-4 pr-9 justify-center"
+          id="products">
         </div>
+      </div>
 
 
 
-        <!-- Modal Are u sure u want to delete this products -->
-        <dialog id="popup-modal"
-          class="p-4 bg-slate-800 border-1 border-slate-700 rounded-lg shadow-md backdrop:backdrop-blur-md">
-          <section class="modal-text text-slate-50">
-            <h3>¿Seguro que desea eliminar este producto?</h3>
-          </section>
-          <section class="modal-buttons flex flex-row gap-2 mt-4 justify-between">
-            <button id="popup-modal-no" class="py-1 px-2 bg-neutral-400 text-neutral-100 rounded-md"
-              autofocus>Cerrar</button>
-            <button id="popup-modal-yes" class="py-1 px-2 bg-red-600 text-slate-100 rounded-md"
-              type="submit">Confirmar</button>
-          </section>
-        </dialog>
+      <!-- Modal Are u sure u want to delete this products -->
+      <dialog id="popup-modal"
+        class="p-4 bg-slate-800 border-1 border-slate-700 rounded-lg shadow-md backdrop:backdrop-blur-md">
+        <section class="modal-text text-slate-50">
+          <h3>¿Seguro que desea eliminar este producto?</h3>
+        </section>
+        <section class="modal-buttons flex flex-row gap-2 mt-4 justify-between">
+          <button id="popup-modal-no" class="py-1 px-2 bg-neutral-400 text-neutral-100 rounded-md"
+            autofocus>Cerrar</button>
+          <button id="popup-modal-yes" class="py-1 px-2 bg-red-600 text-slate-100 rounded-md"
+            type="submit">Confirmar</button>
+        </section>
+      </dialog>
 
     </main>
   </body>

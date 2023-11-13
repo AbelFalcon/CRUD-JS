@@ -33,22 +33,22 @@ router.get('/search', (req, res) => {
   res.json(search)
 })
 
-// Get product from ID
-router.get('/:id', (req, res) => {
-  const product = db.prepare('SELECT * FROM products WHERE id = ?').get(req.params.id)
-  res.json(product)
-})
-
 // Show all brands
 router.get('/brands', (req, res) => {
   const allCategories = db.prepare('SELECT DISTINCT brand FROM products').all()
-  res.json(allCategories)
+  res.json(allCategories.map((brand) => brand.brand))
 })
 
 // Get products of a category
 router.get('/brands/:brand', (req, res) => {
   const brand = db.prepare('SELECT * FROM products WHERE brand = ?').all(req.params.brand)
   res.json(brand)
+})
+
+// Get product from ID
+router.get('/:id', (req, res) => {
+  const product = db.prepare('SELECT * FROM products WHERE id = ?').get(req.params.id)
+  res.json(product)
 })
 
 // define the about route

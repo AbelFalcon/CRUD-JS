@@ -71,7 +71,7 @@ async function createProduct (product) {
   }
 }
 
-function resetFIltres () {
+function resetFilters () {
   const limpiarFiltrosBtn = document.getElementById('clearFiltres')
 
   limpiarFiltrosBtn.addEventListener('click', () => {
@@ -106,6 +106,7 @@ async function getProducts () {
 
     for (const product of productsJSON) {
       productsList = document.getElementById('products')
+      // todo: Usar appendChild
       productsList.innerHTML = productsList.innerHTML + `${Product(product)}`
     }
 
@@ -150,6 +151,58 @@ async function getProducts () {
   }
 }
 
+/**
+ *
+ * @param {*} a
+ */
+async function loadFilters (a) {
+  const filters = [
+    document.getElementById('filter-brands')
+  ]
+
+  for (const filter of filters) {
+    filter.addEventListener('change', (event) => {
+      console.debug(event)
+      const selectedOption = event.target.selectedOptions[0]
+    })
+  }
+
+  await loadFiltersData(filters)
+}
+
+const resolveFilterData = async (filter) => {
+  const filterName = filter.id.split('-')[1]
+  try {
+    const response = await fetch(apiURL + 'products/' + filterName)
+    if (!response.ok) return false
+    const responseJSON = await response.json()
+
+    for (const option of responseJSON) {
+      const optionElement = document.createElement('option')
+      optionElement.value = option
+      optionElement.innerHTML = option
+      filter.appendChild(optionElement)
+    }
+  } catch (err) {
+    console.error(err)
+    return false
+  }
+}
+
+/**
+ *
+ * @param {HTMLElement[]} filters
+ */
+async function loadFiltersData (filters) {
+  const promesas = []
+  for (const filter of filters) {
+    promesas.push(
+      resolveFilterData(filter)
+    )
+  }
+  Promise.all(promesas)
+}
+
 async function main () {
   const status = await checkStatus()
   if (status === false) {
@@ -160,8 +213,9 @@ async function main () {
   document.getElementById('status').textContent = 'Conectado'
   document.getElementById('status').style.color = '#16a34a'
 
-  getProducts()
-  resetFIltres()
+  await getProducts()
+  // resetFilters()
+  await loadFilters()
 }
 
 main()
